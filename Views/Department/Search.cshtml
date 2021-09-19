@@ -1,0 +1,40 @@
+﻿
+@model sb_light_admin.BL.Repositories.DepartmentMirror
+
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Searched Item</h2>
+
+<a asp-controller="Department" asp-action="Read" class="btn btn-info">Back to Department</a>
+
+<form class="form-group" asp-controller="Department" asp-action="Details" method="get">
+
+    <br />
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="Id"> ID</span>
+        <input type="text" class="form-control" id="Id" aria-describedby="basic-addon3" asp-for="Id" disabled>
+
+    </div>
+    <br />
+
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="DepartmentName"> Department Name</span>
+        <input type="text" class="form-control" aria-describedby="basic-addon3" asp-for="DepartmentName" disabled>
+
+    </div>
+    <br />
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="DepartmentCode"> Department Code</span>
+        <input type="text" class="form-control" aria-describedby="basic-addon3" asp-for="DepartmentCode" disabled>
+
+    </div>
+    <br />
+    @*<input type="submit" value="Update" class="btn btn-success" />*@
+
+
+</form>
+

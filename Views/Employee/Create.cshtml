@@ -1,0 +1,183 @@
+﻿@model sb_light_admin.BL.Models.EmployeeVM
+
+
+@{
+    ViewBag.Title = "Create";
+
+}
+
+
+<h2>Create New Employee</h2>
+
+<form enctype="multipart/form-data" class="form-group" asp-controller="Employee" asp-action="Create">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="Name"> Name </span>
+        <input type="text" class="form-control" id="Name" aria-describedby="basic-addon3" asp-for="Name">
+        <div><span asp-validation-for="Name" class="text-danger"></span></div>
+    </div>
+    <br />
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="Salary"> Salary </span>
+        <input type="text" class="form-control" id="Salary" aria-describedby="basic-addon3" asp-for="Salary">
+        <div><span asp-validation-for="Salary" class="text-danger"></span></div>
+    </div>
+    <br />
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="Email"> Email </span>
+        <input type="text" class="form-control" id="Email" aria-describedby="basic-addon3" asp-for="Email">
+        <div><span asp-validation-for="Email" class="text-danger"></span></div>
+    </div>
+    <br />
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="HireDate"> HireDate </span>
+        <input type="date" class="form-control" aria-describedby="basic-addon3" id="datepicker" asp-for="HireDate">
+        <div><span asp-validation-for="HireDate" class="text-danger"></span></div>
+    </div>
+    <br />
+    <div class="input-group mb-3">
+        <div class="demo-checkbox">
+            <input type="checkbox" asp-for="IsActive" checked="">
+            <label asp-for="IsActive">IsActive</label>
+            <span asp-validation-for="IsActive" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="DepartmentId"> Department </span>
+        <select asp-items="(SelectList)ViewBag.departmentList" asp-for="DepartmentId">
+            <option>
+                Choose Department
+            </option>
+        </select>
+    </div>
+    <br />
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3"> Country </span>
+        <select asp-items="(SelectList)ViewBag.CountryList" id="CountryId">
+            <option>
+                choose
+            </option>
+        </select>
+    </div>
+    @*<br />
+    <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon3"> City </span>
+            <select id=" CityId">
+                <option>
+                    choose
+                </option>
+            </select>
+        </div>
+        <br />
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon3" asp-for="DistrictId"> District </span>
+            <select id=" DistrictId" asp-for="DistrictId">
+                <option>
+                    choose
+                </option>
+            </select>
+        </div>*@
+    <br />
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="Photo_Form"> Upload Your Photo </span>
+        <input type="file" class="form-control" id="Photo_Form" aria-describedby="basic-addon3" asp-for="Photo_Form">
+        <div><span asp-validation-for="Photo_Form" class="text-danger"></span></div>
+    </div>
+    <br />
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="CV_Form"> Upload Your CV </span>
+        <input type="file" class="form-control" id="CV_Form" aria-describedby="basic-addon3" asp-for="CV_Form">
+        <div><span asp-validation-for="CV_Form" class="text-danger"></span></div>
+    </div>
+    <br />
+    <div class="input-group mb-3">
+        <span>Notes</span>
+        <br />
+        <textarea name="notes" cols="12" rows="3"></textarea>
+    </div>
+    <br />
+
+    <input type="submit" value="Save" class="btn btn-success" />
+    <input type="reset" value="Clear" class="btn btn-danger" />
+    <br />    <br />
+    <a asp-controller="Employee" asp-action="Index" class="btn btn-info">Back to Employee</a>
+
+</form>
+
+@section ClientValidation
+{
+    <script src="~/vendor/jquery-validate/jquery.validate.min.js"></script>
+
+    <script src="~/vendor/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+    @*// drop-down menu selector for bootstrap*@
+    <script src="~/bootstrap-select/js/bootstrap-select.min.js"></script>
+
+    @*jQuery UI for date picker*@
+    <script>
+        $(function () {
+            $("datepicker").datepicker();
+        });
+
+    </script>
+
+
+    @*jQuery for Ajax call and Json output for countries, cities and districts *@
+    <script>
+        $(function () {
+            $("#CountryId").change(function () {
+                var Country_Id = $("#CountryId option:selected").val();
+                $("#CityId").empty();
+                $("#CityId").append("<option> Choose City </option>")
+                $.ajax({
+                    type: "POST",
+                    url: "/Employee/GetCityByCountryId",
+                    data: { param_CountryId: Country_Id },
+                    success: function (Result) {
+
+                        $.each(Result, function (Index, objectContent) {
+
+                            $("#CityId").append("<option value='" + objectContent.Id + "'>" + objectContent.CityName + "</option>")
+
+                        });
+
+                    }
+
+                });
+
+            });
+        });
+
+        $(function () {
+            $("#CityId").change(function () {
+                var City_Id = $("#CityId option:selected").val();
+                $("#DistrictId").empty();
+                $("#DistrictId").append("<option> Choose District </option>")
+                $.ajax({
+                    type: "POST",
+                    url: "/Employee/GetDistrictByCityId",
+                    data: { param_CityId: City_Id },
+                    success: function (Result) {
+
+                        $.each(Result, function (Index, objectContent) {
+
+                            $("#DistrictId").append("<option value='" + objectContent.Id + "'>" + objectContent.DistrictName + "</option>")
+
+                        });
+
+                    }
+
+                });
+
+            });
+        });
+
+    </script>
+
+
+
+}

@@ -1,0 +1,36 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "bootstrap-vue@2.21.2",
+      "destination": "wwwroot/bootstrap-vue/",
+      "files": [
+        "bootstrap-vue.min.js",
+        "bootstrap-vue-icons.common.min.js",
+        "bootstrap-vue-icons.common.js"
+      ]
+    },
+    {
+      "library": "jquery-validate@1.19.2",
+      "destination": "wwwroot/jquery-validate/",
+      "files": [
+        "jquery.validate.min.js"
+      ]
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.12",
+      "destination": "wwwroot/jquery-validation-unobtrusive/",
+      "files": [
+        "jquery.validate.unobtrusive.min.js"
+      ]
+    },
+    {
+      "library": "bootstrap-select@1.13.18",
+      "destination": "wwwroot/bootstrap-select/",
+      "files": [
+        "js/bootstrap-select.min.js"
+      ]
+    }
+  ]
+}

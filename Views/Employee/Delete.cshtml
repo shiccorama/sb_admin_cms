@@ -1,0 +1,45 @@
+﻿
+@model sb_light_admin.BL.Models.EmployeeVM
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Confirm Delete ?</h2>
+
+<form class="form-group" asp-controller="Employee" asp-action="Delete" method="post">
+
+    
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="Id"> Id </span>
+        <input type="text" class="form-control" id="Id" aria-describedby="basic-addon3" asp-for="Id" >
+    
+    </div>
+    <br />  
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="Name"> Name </span>
+        <input type="text" class="form-control" id="Name" aria-describedby="basic-addon3" asp-for="Name" disabled>
+
+    </div>
+    <br />
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="Email"> Email </span>
+        <input type="text" class="form-control" id="Email" aria-describedby="basic-addon3" asp-for="Email" disabled>
+
+    </div>
+    <br />
+    <div class="demo-checkbox">
+        <input type="checkbox" asp-for="IsActive" disabled>
+        <label asp-for="IsActive">IsActive</label>
+    </div>
+    <br />
+    <label asp-for="DepartmentId">Department</label>
+    <select asp-for="DepartmentId" asp-items="(SelectList)ViewBag.departmentList" disabled></select>
+    <br />
+    <br />
+
+    <input type="submit" value="Confirm Delete ?" class="btn btn-danger" />
+    <a asp-controller="Employee" asp-action="Index" class="btn btn-info">Back to Employee</a>
+
+
+</form>

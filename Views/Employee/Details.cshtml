@@ -1,0 +1,98 @@
+﻿@model sb_light_admin.BL.Models.EmployeeVM
+
+
+
+
+@{
+    ViewBag.Title = "Details";
+
+}
+
+
+<h2>Employee Details</h2>
+
+<form class="form-group" asp-controller="Employee" asp-action="Details">
+
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="Name"> Name </span>
+        <input type="text" class="form-control" id="Name" aria-describedby="basic-addon3" asp-for="Name" disabled>
+
+    </div>
+    <br />
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="Salary"> Salary </span>
+        <input type="text" class="form-control" id="Salary" aria-describedby="basic-addon3" asp-for="Salary" disabled>
+
+    </div>
+    <br />
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="Email"> Email </span>
+        <input type="text" class="form-control" id="Email" aria-describedby="basic-addon3" asp-for="Email" disabled>
+
+    </div>
+    <br />
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="HireDate"> HireDate </span>
+        <input type="text" class="form-control" aria-describedby="basic-addon3" id="datepicker" asp-for="HireDate" disabled>
+
+    </div>
+    <br />
+    <div class="input-group mb-3">
+        <div class="demo-checkbox">
+            <input type="checkbox" asp-for="IsActive" checked="" disabled>
+            <label asp-for="IsActive">IsActive</label>
+
+        </div>
+    </div>
+    <br />
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="DepartmentId"> Department </span>
+        <select asp-items="(SelectList)ViewBag.departmentList" asp-for="DepartmentId" disabled>
+            <option>
+            </option>
+        </select>
+    </div>
+    <br />
+    <div class="input-group mb-3">
+        <span>Notes</span>
+        <br />
+        <textarea name="notes" cols="12" rows="3" asp-for="Notes" disabled></textarea>
+    </div>
+    <br />
+</form>
+
+<br />
+<div class="mb-3">
+    <span class="input-group-text" id="basic-addon3" asp-for="Photo_Form"> Your Photo </span>
+    <img src="@Url.Content(ViewBag.photo_path)" asp-append-version="true" class="img-circle" id="Photo_Form" name="Photo_Name" width="100" height="100" />
+
+</div>
+<br />
+<div class="mb-3">
+    <span class="input-group-text" id="basic-addon3" asp-for="CV_Form"> Download CV </span>
+    <a asp-route-CV_Form="~/Files/Docs/{ViewBag.cv_path}" class="btn btn-warning" id="CV_Form" aria-describedby="basic-addon3" name="CV_Name" download="download">download</a>
+
+</div>
+<br />
+
+<a asp-controller="Employee" asp-action="Index" class="btn btn-info">Back to Employee</a>
+
+@section ClientValidation
+{
+
+    @*// drop-down menu selector for bootstrap*@
+    <script src="~/bootstrap-select/js/bootstrap-select.min.js"></script>
+
+    @*jQuery UI for date picker*@
+    <script>
+        $(function () {
+            $("datepicker").datepicker();
+        });
+
+    </script>
+
+
+}
+
+

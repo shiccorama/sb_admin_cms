@@ -1,0 +1,31 @@
+﻿
+
+@model sb_light_admin.BL.Repositories.DepartmentMirror
+
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<form class="form-group" asp-controller="Department" asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="DepartmentName"> Department Name</span>
+        <input type="text" class="form-control" id="DepartmenName" aria-describedby="basic-addon3" asp-for="DepartmentName" disabled>
+
+    </div>
+    <br />
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="DepartmentCode"> Department Code</span>
+        <input type="text" class="form-control" id="DepartmenCode" aria-describedby="basic-addon3" asp-for="DepartmentCode" disabled>
+
+    </div>
+    <br />
+    <input type="submit" value="Confirm Delete ?" class="btn btn-danger" />
+    <a asp-controller="Department" asp-action="Read" class="btn btn-info">Back to Department</a>
+
+
+</form>

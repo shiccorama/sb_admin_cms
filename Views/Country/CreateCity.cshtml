@@ -1,0 +1,44 @@
+﻿@model sb_light_admin.BL.Models.CityVM
+
+
+@{
+    ViewBag.Title = "CreateCity";
+
+}
+
+
+<h2>Create New City</h2>
+
+<form enctype="multipart/form-data" class="form-group" asp-controller="Country" asp-action="CreateCity">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="CityName"> City Name </span>
+        <input type="text" class="form-control" id="CityName" aria-describedby="basic-addon3" asp-for="CityName">
+        <div><span asp-validation-for="CityName" class="text-danger"></span></div>
+    </div>
+    <br />
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="CountryId"> Country Id</span>
+        <input type="text" class="form-control" id="CountryId" aria-describedby="basic-addon3" asp-for="CountryId">
+        <div><span asp-validation-for="CountryId" class="text-danger"></span></div>
+    </div>
+    <br />
+
+
+    <input type="submit" value="Save" class="btn btn-success" />
+    <input type="reset" value="Clear" class="btn btn-danger" />
+    <br />    <br />
+    <a asp-controller="Employee" asp-action="Index" class="btn btn-info">Back to Employee</a>
+
+</form>
+
+
+@section ClientValidation
+{
+    <script src="~/vendor/jquery-validate/jquery.validate.min.js"></script>
+
+    <script src="~/vendor/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}
+

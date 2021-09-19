@@ -1,0 +1,40 @@
+﻿
+
+@model sb_light_admin.BL.Repositories.DepartmentMirror
+
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update Department</h2>
+
+
+
+<form class="form-group" asp-controller="Department" asp-action="Update" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="DepartmentName"> Department Name</span>
+        <input type="text" class="form-control" id="DepartmenName" aria-describedby="basic-addon3" asp-for="DepartmentName">
+        <div><span asp-validation-for="DepartmentName" class="text-danger"></span></div>
+    </div>
+    <br />
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon3" asp-for="DepartmentCode"> Department Code</span>
+        <input type="text" class="form-control" id="DepartmenCode" aria-describedby="basic-addon3" asp-for="DepartmentCode">
+        <div><span asp-validation-for="DepartmentCode" class="text-danger"></span></div>
+    </div>
+    <br />
+    <input type="submit" value="Update" class="btn btn-success" />
+    <input type="reset" value="Clear" class="btn btn-danger" />
+    <a asp-controller="Department" asp-action="Read" class="btn btn-info">Back to Department</a>
+
+</form>
+
+@section ClientValidation
+{
+    <script src="~/vendor/jquery-validate/jquery.validate.min.js"></script>
+
+    <script src="~/vendor/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

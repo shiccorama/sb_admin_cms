@@ -1,0 +1,36 @@
+﻿@model List<sb_light_admin.view.Models.PageAdmins>
+
+@{
+    ViewBag.Title = SharedLocalizer["Privacy"];
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to detail your site's privacy policy.</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Admin Name</th>
+            <th scope="col">Authorized</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var item in Model)
+        {
+
+    <tr>
+        <td>@ViewBag.Counter</td>
+        <td>@item.Id</td>
+        <td>@item.Name</td>
+        <td>@item.IsAuthorized</td>
+    </tr>
+
+        }
+     
+        </tbody>
+</table>
+

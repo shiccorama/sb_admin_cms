@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+@*_________________Search Bar _______________________*@
+
+<form class="form-group" asp-controller="Employee" asp-action="Index">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <input type="text" placeholder="Search By Name" class="form-control" name="searchField" />
+            </div>
+            <div class="col-lg-4">
+                <input type="submit" value="Search" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+</form>
